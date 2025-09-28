@@ -1,10 +1,27 @@
-/Users/hippolytepenet/Downloads/decathlon/src/main/java/alten/test/decathlon/GestionproduitApplication.java
-/Users/hippolytepenet/Downloads/decathlon/src/main/java/alten/test/decathlon/auth/config/JwtAuthenticationFilter.java
-/Users/hippolytepenet/Downloads/decathlon/src/main/java/alten/test/decathlon/auth/config/SecurityConfig.java
-/Users/hippolytepenet/Downloads/decathlon/src/main/java/alten/test/decathlon/auth/controller/AuthController.java
-/Users/hippolytepenet/Downloads/decathlon/src/main/java/alten/test/decathlon/auth/dto/AccountRequest.java
-/Users/hippolytepenet/Downloads/decathlon/src/main/java/alten/test/decathlon/auth/dto/AccountResponse.java
-/Users/hippolytepenet/Downloads/decathlon/src/main/java/alten/test/decathlon/auth/entity/User.java
-/Users/hippolytepenet/Downloads/decathlon/src/main/java/alten/test/decathlon/auth/repository/UserRepository.java
-/Users/hippolytepenet/Downloads/decathlon/src/main/java/alten/test/decathlon/auth/service/UserService.java
-/Users/hippolytepenet/Downloads/decathlon/src/main/java/alten/test/decathlon/auth/utils/JwtUtils.java
+/Users/hippolytepenet/Documents/project java/testaltenn/src/main/java/alten/test/decathlon/GestionproduitApplication.java
+/Users/hippolytepenet/Documents/project java/testaltenn/src/main/java/alten/test/decathlon/api/ApiResponse.java
+/Users/hippolytepenet/Documents/project java/testaltenn/src/main/java/alten/test/decathlon/auth/config/JwtAuthenticationFilter.java
+/Users/hippolytepenet/Documents/project java/testaltenn/src/main/java/alten/test/decathlon/auth/config/SecurityConfig.java
+/Users/hippolytepenet/Documents/project java/testaltenn/src/main/java/alten/test/decathlon/auth/controller/AuthController.java
+/Users/hippolytepenet/Documents/project java/testaltenn/src/main/java/alten/test/decathlon/auth/dto/AccountRequest.java
+/Users/hippolytepenet/Documents/project java/testaltenn/src/main/java/alten/test/decathlon/auth/dto/AccountResponse.java
+/Users/hippolytepenet/Documents/project java/testaltenn/src/main/java/alten/test/decathlon/auth/dto/TokenRequest.java
+/Users/hippolytepenet/Documents/project java/testaltenn/src/main/java/alten/test/decathlon/auth/dto/TokenResponse.java
+/Users/hippolytepenet/Documents/project java/testaltenn/src/main/java/alten/test/decathlon/auth/entity/User.java
+/Users/hippolytepenet/Documents/project java/testaltenn/src/main/java/alten/test/decathlon/auth/repository/UserRepository.java
+/Users/hippolytepenet/Documents/project java/testaltenn/src/main/java/alten/test/decathlon/auth/service/UserService.java
+/Users/hippolytepenet/Documents/project java/testaltenn/src/main/java/alten/test/decathlon/auth/utils/JwtUtils.java
+/Users/hippolytepenet/Documents/project java/testaltenn/src/main/java/alten/test/decathlon/auth/utils/SecurityUtils.java
+/Users/hippolytepenet/Documents/project java/testaltenn/src/main/java/alten/test/decathlon/product/controller/ProductController.java
+/Users/hippolytepenet/Documents/project java/testaltenn/src/main/java/alten/test/decathlon/product/dto/InventoryStatus.java
+/Users/hippolytepenet/Documents/project java/testaltenn/src/main/java/alten/test/decathlon/product/dto/ProductRequest.java
+/Users/hippolytepenet/Documents/project java/testaltenn/src/main/java/alten/test/decathlon/product/dto/ProductResponse.java
+/Users/hippolytepenet/Documents/project java/testaltenn/src/main/java/alten/test/decathlon/product/entity/Product.java
+/Users/hippolytepenet/Documents/project java/testaltenn/src/main/java/alten/test/decathlon/product/repository/ProductRepository.java
+/Users/hippolytepenet/Documents/project java/testaltenn/src/main/java/alten/test/decathlon/product/service/ProductService.java
+/Users/hippolytepenet/Documents/project java/testaltenn/src/main/java/alten/test/decathlon/shoppingcart/controller/ShoppingCartController.java
+/Users/hippolytepenet/Documents/project java/testaltenn/src/main/java/alten/test/decathlon/shoppingcart/dto/ShoppingCartRequest.java
+/Users/hippolytepenet/Documents/project java/testaltenn/src/main/java/alten/test/decathlon/shoppingcart/dto/ShoppingCartResponse.java
+/Users/hippolytepenet/Documents/project java/testaltenn/src/main/java/alten/test/decathlon/shoppingcart/entity/ShoppingCart.java
+/Users/hippolytepenet/Documents/project java/testaltenn/src/main/java/alten/test/decathlon/shoppingcart/repository/ShoppingCartRepository.java
+/Users/hippolytepenet/Documents/project java/testaltenn/src/main/java/alten/test/decathlon/shoppingcart/service/ShoppingCartService.java

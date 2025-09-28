@@ -9,19 +9,23 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import alten.test.decathlon.auth.repository.UserRepository;
 import alten.test.decathlon.auth.utils.JwtUtils;
 
  @Configuration
 public class SecurityConfig {
     private final JwtUtils jwtUtils;
+    private final UserRepository userRepository;
 
-    public SecurityConfig(JwtUtils jwtUtils) {
+    public SecurityConfig(JwtUtils jwtUtils, UserRepository userRepository) {
         this.jwtUtils = jwtUtils;
+        this.userRepository = userRepository;
    }
 
 @Bean
 public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    JwtAuthenticationFilter jwtFilter = new JwtAuthenticationFilter(jwtUtils);
+    JwtAuthenticationFilter jwtFilter = new JwtAuthenticationFilter(jwtUtils, userRepository);
     http.csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(auth -> auth
             .requestMatchers("/auth/**", "/h2-console/**").permitAll()

@@ -1,22 +1,32 @@
 package alten.test.decathlon.product.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import alten.test.decathlon.shoppingcart.entity.ShoppingCart;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.websocket.OnClose;
 
 @Entity
 @Table(name = "products")
 public class Product {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(unique=true)
     private String code;
     private String name;
     private String description;
@@ -36,6 +46,9 @@ public class Product {
     @LastModifiedDate
     @Column(nullable = false)
     private LocalDateTime updateAt;
+
+    @ManyToMany(mappedBy = "products")
+    private List<ShoppingCart> shoppingcarts = new ArrayList<>();
 
 
     public Product(){}

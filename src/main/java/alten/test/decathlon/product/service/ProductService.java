@@ -26,6 +26,7 @@ public ProductResponse create(ProductRequest productRequest){
     return new ProductResponse(product.getId(), product.getName(), product.getPrice(), product.getCreatedAt(), product.getUpdateAt());
 }
 
+
 public ProductResponse update(Long id, ProductRequest productRequest){
     Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("product not found"));
     product.setName(productRequest.getName());

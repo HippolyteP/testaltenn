@@ -1,10 +1,14 @@
 package alten.test.decathlon.auth.entity;
 
+import alten.test.decathlon.shoppingcart.entity.ShoppingCart;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,9 +19,11 @@ public class User {
     private long id;
     private String username;
     private String firstname;
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
     private String password;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private ShoppingCart shoppingCart;
 
     public User(){};
     public User(String username, String password, String firstname, String email) {
@@ -36,4 +42,11 @@ public class User {
     public void setFirstname(String firstname) {this.firstname = firstname;}
         public String getPassword() {return password;}
     public void setPassword(String password) {this.password = password;}
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
+    }
+    
 }

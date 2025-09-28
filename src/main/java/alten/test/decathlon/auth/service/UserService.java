@@ -27,9 +27,9 @@ public class UserService{
     public User saveUser(String username, String rawPassword, String email, String firstname) {
         User user = new User();
         user.setUsername(username);
-        user.setPassword(rawPassword);
-        user.setemail(email);
-        user.setfirstname(firstname);
+        user.setPassword(passwordEncoder.encode(rawPassword));
+        user.setEmail(email);
+        user.setFirstname(firstname);
         return userRepository.save(user);
     }
 /**

@@ -29,10 +29,18 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if(header != null && header.startsWith("Bearer ")){
             token = header.substring(7);
         }
+
         if(token !=null && jwtUtils.validateToken(token)){
             String username = jwtUtils.getUserNameFromToken(token);
             UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(username, null,null);
             SecurityContextHolder.getContext().setAuthentication(auth);
+            if(request.getRequestURI().contains("/products") && !"admin@admin.com".equalsIgnoreCase(username)) {
+                response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                response.setContentType(("application/json"));
+                response.getWriter().write(
+                    "{\"status\":403,\"message\":\"Only the admin is allow to access to this ressource\",\"data\":null}"
+                );
+            }
         }
         filterChain.doFilter(request, response);
     }

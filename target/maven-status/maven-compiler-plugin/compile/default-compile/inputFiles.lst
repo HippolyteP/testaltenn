@@ -1,0 +1,10 @@
+/Users/hippolytepenet/Downloads/decathlon/src/main/java/alten/test/decathlon/GestionproduitApplication.java
+/Users/hippolytepenet/Downloads/decathlon/src/main/java/alten/test/decathlon/auth/config/JwtAuthenticationFilter.java
+/Users/hippolytepenet/Downloads/decathlon/src/main/java/alten/test/decathlon/auth/config/SecurityConfig.java
+/Users/hippolytepenet/Downloads/decathlon/src/main/java/alten/test/decathlon/auth/controller/AuthController.java
+/Users/hippolytepenet/Downloads/decathlon/src/main/java/alten/test/decathlon/auth/dto/AccountRequest.java
+/Users/hippolytepenet/Downloads/decathlon/src/main/java/alten/test/decathlon/auth/dto/AccountResponse.java
+/Users/hippolytepenet/Downloads/decathlon/src/main/java/alten/test/decathlon/auth/entity/User.java
+/Users/hippolytepenet/Downloads/decathlon/src/main/java/alten/test/decathlon/auth/repository/UserRepository.java
+/Users/hippolytepenet/Downloads/decathlon/src/main/java/alten/test/decathlon/auth/service/UserService.java
+/Users/hippolytepenet/Downloads/decathlon/src/main/java/alten/test/decathlon/auth/utils/JwtUtils.java

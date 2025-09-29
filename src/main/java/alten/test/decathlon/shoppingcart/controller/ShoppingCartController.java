@@ -12,6 +12,7 @@ import alten.test.decathlon.shoppingcart.service.ShoppingCartService;
 
 import java.net.URI;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -30,24 +31,20 @@ public ShoppingCartController(ShoppingCartService shoppingCartService){
 }
 
 @PostMapping
-public ResponseEntity<ApiResponse<ShoppingCartResponse>> create(@RequestBody ShoppingCartRequest request) {
+public ResponseEntity<ShoppingCartResponse> create(@RequestBody ShoppingCartRequest request) {
     ShoppingCartResponse shoppingCart = shoppingCartService.createShoppingCart(request);
-    URI location = URI.create("/shoppingcart/" + shoppingCart.getId());
-    return ResponseEntity.created(location).body(new ApiResponse<>(201, "ShoppingCart created successfully", shoppingCart));
-    
+    return new ResponseEntity<>(shoppingCart,HttpStatus.CREATED);
 }
 
 @PutMapping("/addItem/{id}")
-public ResponseEntity<ApiResponse<ShoppingCartResponse>> addItem(@PathVariable Long id, @RequestBody ShoppingCartRequest request) {
-    ShoppingCartResponse shoppingCart =  shoppingCartService.addItem(id,request);
-    return ResponseEntity.ok(new ApiResponse<>(200, "Item added successfully", shoppingCart));
+public ShoppingCartResponse addItem(@PathVariable Long id, @RequestBody ShoppingCartRequest request) {
+    return shoppingCartService.addItem(id,request);
 }
 
 @PutMapping("/deleteItem/{id}")
-public ResponseEntity<ApiResponse<ShoppingCartResponse>> deleteItem(@PathVariable Long id, @RequestBody ShoppingCartRequest request) {
-ShoppingCartResponse shoppingCart =  shoppingCartService.deleteItem(id, request);
-    return ResponseEntity.ok(new ApiResponse<>(200, "Item deleted successfully", shoppingCart));
-}
+public ShoppingCartResponse deleteItem(@PathVariable Long id, @RequestBody ShoppingCartRequest request) {
+    return shoppingCartService.deleteItem(id, request);
+    }
 
 
 }

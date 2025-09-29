@@ -7,10 +7,13 @@ import alten.test.decathlon.api.ApiResponse;
 import alten.test.decathlon.auth.utils.JwtUtils;
 import alten.test.decathlon.product.dto.ProductRequest;
 import alten.test.decathlon.product.dto.ProductResponse;
+import alten.test.decathlon.product.entity.Product;
 import alten.test.decathlon.product.service.ProductService;
+import jakarta.validation.Valid;
 
 import java.net.URI;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,23 +32,19 @@ public ProductController(ProductService productService){
     this.productService = productService;
 }
 @PostMapping
-public ResponseEntity<ApiResponse<ProductResponse>> create(@RequestBody ProductRequest request) {
-    ProductResponse product = productService.create(request);
-    URI location = URI.create("/products/" + product.getId());
-    return ResponseEntity.created(location).body(new ApiResponse<>(201, "Product created successfully", product));
-    
+public ResponseEntity<ProductResponse> create(@Valid @RequestBody ProductRequest request) {
+    ProductResponse created = productService.create(request);
+    return new ResponseEntity<>(created, HttpStatus.CREATED);
 }
 
 @PutMapping("/{id}")
-public ResponseEntity<ApiResponse<ProductResponse>> update(@PathVariable Long id, @RequestBody ProductRequest request) {
-    ProductResponse product = productService.update(id,request);
-    return ResponseEntity.ok(new ApiResponse<>(200, "Product updated successfully", product));
+public ProductResponse update(@PathVariable Long id, @Valid @RequestBody ProductRequest request) {
+    return(productService.update(id,request));
 }
 
 @DeleteMapping("/{id}")
 public ResponseEntity<Void> delete(@PathVariable Long id) {
     productService.delete(id);
-    
     return ResponseEntity.noContent().build();
 }
 

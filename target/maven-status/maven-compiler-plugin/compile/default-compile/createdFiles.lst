@@ -1,6 +1,7 @@
 alten/test/decathlon/product/controller/ProductController.class
 alten/test/decathlon/GestionproduitApplication.class
 alten/test/decathlon/product/dto/ProductResponse.class
+alten/test/decathlon/shoppingcart/entity/TestId.class
 alten/test/decathlon/auth/service/UserService.class
 alten/test/decathlon/shoppingcart/repository/ShoppingCartRepository.class
 alten/test/decathlon/shoppingcart/service/ShoppingCartService.class

@@ -10,10 +10,12 @@ import alten.test.decathlon.auth.entity.User;
 import alten.test.decathlon.auth.repository.UserRepository;
 import alten.test.decathlon.auth.utils.SecurityUtils;
 import alten.test.decathlon.product.entity.Product;
+import alten.test.decathlon.product.exceptions.ProductNotFoundException;
 import alten.test.decathlon.product.repository.ProductRepository;
 import alten.test.decathlon.shoppingcart.dto.ShoppingCartRequest;
 import alten.test.decathlon.shoppingcart.dto.ShoppingCartResponse;
 import alten.test.decathlon.shoppingcart.entity.ShoppingCart;
+import alten.test.decathlon.shoppingcart.exceptions.UserNotFoundInShoppingCartException;
 import alten.test.decathlon.shoppingcart.repository.ShoppingCartRepository;
 
 @Service
@@ -40,12 +42,11 @@ public ShoppingCartResponse addItem( Long id, ShoppingCartRequest shoppingCartre
         shoppingCart.setProducts(new ArrayList<Product>()); 
         shoppingCart.setUser(user); 
     } else {
-        shoppingCart =  shoppingCartRepository.findByUser(user).orElseThrow(() -> new RuntimeException());
+        shoppingCart =  shoppingCartRepository.findByUser(user).orElseThrow(() -> new UserNotFoundInShoppingCartException(user.getId()));
     }
-    //user.setShoppingCart(shoppingCart);
-    //userRepository.save(user);
 
-    Product product = productRepository.findByCode(shoppingCartrequest.getCodeProduct()).orElseThrow(() -> new RuntimeException());
+    String code = shoppingCartrequest.getCodeProduct();
+    Product product = productRepository.findByCode(code).orElseThrow(() -> new ProductNotFoundException(code));
     shoppingCart.getProducts().add(product);
 
     shoppingCartRepository.save(shoppingCart);
@@ -56,7 +57,7 @@ public ShoppingCartResponse addItem( Long id, ShoppingCartRequest shoppingCartre
 
 public ShoppingCartResponse deleteItem(Long id, ShoppingCartRequest shoppingCartrequest){
     ShoppingCart shoppingCart =  shoppingCartRepository.findByUser(securityUtils.getCurrentUser()).orElseThrow(() -> new RuntimeException());
-    Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException());
+    Product product = productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
 
     List<Product> products = shoppingCart.getProducts();
     products.remove(product);

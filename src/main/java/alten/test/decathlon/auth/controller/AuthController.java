@@ -8,12 +8,15 @@ import alten.test.decathlon.auth.dto.AccountRequest;
 import alten.test.decathlon.auth.dto.AccountResponse;
 import alten.test.decathlon.auth.dto.TokenRequest;
 import alten.test.decathlon.auth.entity.User;
+import alten.test.decathlon.auth.exceptions.InvalidCredentialException;
 import alten.test.decathlon.auth.service.UserService;
 import alten.test.decathlon.auth.utils.JwtUtils;
+import jakarta.validation.Valid;
 
 import java.net.URI;
 import java.util.Map;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,31 +36,15 @@ public class AuthController {
     }
 
     @PostMapping("/account")
-    public ResponseEntity<?> account(@RequestBody AccountRequest request) {
- 
-      if(userService.findByEmail(request.getEmail()) != null) {
-
-        return ResponseEntity.badRequest().body("Username is already in use");
-        
-      }
-      User userCreated = userService.saveUser(request.getUsername(), request.getPassword(), request.getEmail(), request.getFirstname());
-
-     AccountResponse accountResponse = new AccountResponse(userCreated.getEmail(), userCreated.getPassword());
-      URI location = URI.create("/account/" + userCreated.getId());
-      return ResponseEntity.created(location).body(new ApiResponse(201,"User created successfully", accountResponse));
-      
+    public ResponseEntity<AccountResponse> account(@Valid @RequestBody AccountRequest request) {
+      return new ResponseEntity<>(userService.createAccount(request.getUsername(), request.getPassword(), request.getEmail(), request.getFirstname()), HttpStatus.CREATED);
     }
 
     @PostMapping("/token")
-    public ResponseEntity<?> token(@RequestBody TokenRequest request) {
+    public ResponseEntity<String> token(@Valid @RequestBody TokenRequest request) {
  
       User user = userService.findByEmail(request.getEmail());
-      if(user != null && userService.checkPassword(request.getPassword(), user.getPassword())){
-        return ResponseEntity.ok( jwtUtils.generateToken(request.getEmail()));
-
-      } else {
-        return ResponseEntity.status(401).body(Map.of("error", "invalid credential"));
-      }
+      userService.checkPassword(request.getPassword(), user.getPassword());
+      return new ResponseEntity<>(jwtUtils.generateToken(request.getEmail()),HttpStatus.CREATED);
     }
-    
 }

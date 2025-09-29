@@ -18,7 +18,7 @@ public class ProductRequest {
     private LocalDateTime createdAt;
     private LocalDateTime updateAt;
 
-    
+    public ProductRequest(){};
     public ProductRequest(String code, String name, String description, String category, Double price) {
         this.code = code;
         this.name = name;

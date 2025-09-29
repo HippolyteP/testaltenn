@@ -39,7 +39,6 @@ public class AuthController {
 
     @PostMapping("/token")
     public ResponseEntity<String> token(@Valid @RequestBody TokenRequest request) {
- 
       User user = userService.findByEmail(request.getEmail());
       userService.checkPassword(request.getPassword(), user.getPassword());
       return new ResponseEntity<>(jwtUtils.generateToken(request.getEmail()),HttpStatus.CREATED);

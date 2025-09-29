@@ -11,16 +11,14 @@ import alten.test.decathlon.auth.exceptions.InvalidCredentialException;
 import alten.test.decathlon.auth.exceptions.UserCreationException;
 import alten.test.decathlon.auth.exceptions.UserNotFoundException;
 import alten.test.decathlon.auth.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class UserService{
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-        public UserService(UserRepository userRepository,PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
 /**
  * 
  * @param username

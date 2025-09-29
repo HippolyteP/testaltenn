@@ -1,1 +1,3 @@
+alten/test/decathlon/product/service/ProductServiceTest.class
 alten/test/decathlon/GestionproduitApplicationTests.class
+alten/test/decathlon/auth/utils/JwtUtilsTest.class

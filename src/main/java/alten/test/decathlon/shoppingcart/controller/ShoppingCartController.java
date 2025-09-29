@@ -9,6 +9,7 @@ import alten.test.decathlon.product.dto.ProductResponse;
 import alten.test.decathlon.shoppingcart.dto.ShoppingCartRequest;
 import alten.test.decathlon.shoppingcart.dto.ShoppingCartResponse;
 import alten.test.decathlon.shoppingcart.service.ShoppingCartService;
+import lombok.RequiredArgsConstructor;
 
 import java.net.URI;
 
@@ -23,12 +24,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @RestController
 @RequestMapping("/shoppingcart")
+@RequiredArgsConstructor
 public class ShoppingCartController {
 private final ShoppingCartService shoppingCartService;
-
-public ShoppingCartController(ShoppingCartService shoppingCartService){
-    this.shoppingCartService = shoppingCartService;
-}
 
 @PostMapping
 public ResponseEntity<ShoppingCartResponse> create(@RequestBody ShoppingCartRequest request) {

@@ -10,13 +10,12 @@ import alten.test.decathlon.product.entity.Product;
 import alten.test.decathlon.product.exceptions.ProductConflictException;
 import alten.test.decathlon.product.exceptions.ProductNotFoundException;
 import alten.test.decathlon.product.repository.ProductRepository;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class ProductService {
 private final ProductRepository productRepository;
-public ProductService(ProductRepository productRepository){
-    this.productRepository = productRepository;
-}
 
 public ProductResponse create(ProductRequest productRequest){
 

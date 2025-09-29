@@ -1,19 +1,12 @@
 package alten.test.decathlon.shoppingcart.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class ShoppingCartRequest {
 
-
     private String codeProduct;
-
-
-    public String getCodeProduct() {
-        return codeProduct;
-    }
-
-    public void setCodeProduct(String codeProduct) {
-        this.codeProduct = codeProduct;
-    }
-
-
 
 }

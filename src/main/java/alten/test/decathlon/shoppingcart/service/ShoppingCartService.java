@@ -2,7 +2,6 @@ package alten.test.decathlon.shoppingcart.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -18,19 +17,14 @@ import alten.test.decathlon.shoppingcart.entity.ShoppingCart;
 import alten.test.decathlon.shoppingcart.exceptions.ShoppingCartConflictException;
 import alten.test.decathlon.shoppingcart.exceptions.UserNotFoundInShoppingCartException;
 import alten.test.decathlon.shoppingcart.repository.ShoppingCartRepository;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class ShoppingCartService {
 private final ShoppingCartRepository shoppingCartRepository;
 private final ProductRepository productRepository;
 private final SecurityUtils securityUtils;
-private final UserRepository userRepository;
-public ShoppingCartService(ShoppingCartRepository shoppingCartRepository, SecurityUtils securityUtils, ProductRepository productRepository, UserRepository userRepository){
-    this.shoppingCartRepository = shoppingCartRepository;
-    this.productRepository = productRepository;
-    this.securityUtils = securityUtils;
-    this.userRepository = userRepository;
-}
 
 public ShoppingCartResponse createShoppingCart(ShoppingCartRequest shoppingCartrequest){
         return addItem(null, shoppingCartrequest);
@@ -79,6 +73,5 @@ public ShoppingCartResponse deleteItem(Long id){
     return shopppingCartResponse;
 
 }
-
 
 }

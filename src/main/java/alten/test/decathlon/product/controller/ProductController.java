@@ -10,6 +10,7 @@ import alten.test.decathlon.product.dto.ProductResponse;
 import alten.test.decathlon.product.entity.Product;
 import alten.test.decathlon.product.service.ProductService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 import java.net.URI;
 
@@ -25,12 +26,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/products")
+@RequiredArgsConstructor
 public class ProductController {
 private final ProductService productService;
 
-public ProductController(ProductService productService){
-    this.productService = productService;
-}
 @PostMapping
 public ResponseEntity<ProductResponse> create(@Valid @RequestBody ProductRequest request) {
     ProductResponse created = productService.create(request);

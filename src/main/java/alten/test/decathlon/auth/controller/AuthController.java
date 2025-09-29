@@ -12,6 +12,7 @@ import alten.test.decathlon.auth.exceptions.InvalidCredentialException;
 import alten.test.decathlon.auth.service.UserService;
 import alten.test.decathlon.auth.utils.JwtUtils;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 import java.net.URI;
 import java.util.Map;
@@ -24,16 +25,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/auth")
+@RequiredArgsConstructor
 public class AuthController {
 
     
     private final UserService userService;
     private final JwtUtils jwtUtils;
-
-        public AuthController(JwtUtils jwtUtils, UserService userService) {
-        this.jwtUtils = jwtUtils;
-        this.userService = userService;
-    }
 
     @PostMapping("/account")
     public ResponseEntity<AccountResponse> account(@Valid @RequestBody AccountRequest request) {

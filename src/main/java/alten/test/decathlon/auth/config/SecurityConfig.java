@@ -12,16 +12,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import alten.test.decathlon.auth.repository.UserRepository;
 import alten.test.decathlon.auth.utils.JwtUtils;
+import lombok.RequiredArgsConstructor;
 
  @Configuration
+ @RequiredArgsConstructor
 public class SecurityConfig {
     private final JwtUtils jwtUtils;
     private final UserRepository userRepository;
-
-    public SecurityConfig(JwtUtils jwtUtils, UserRepository userRepository) {
-        this.jwtUtils = jwtUtils;
-        this.userRepository = userRepository;
-   }
 
 @Bean
 public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

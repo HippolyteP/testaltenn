@@ -70,6 +70,7 @@ public ShoppingCartResponse deleteItem(Long id){
     products.remove(product);
     if(products.isEmpty()){
         shoppingCartRepository.delete(shoppingCart);
+        shoppingCart = null;
     } else {
         shoppingCartRepository.save(shoppingCart);
     }

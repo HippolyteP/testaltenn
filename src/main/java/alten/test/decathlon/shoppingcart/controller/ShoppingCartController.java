@@ -42,9 +42,7 @@ public ShoppingCartResponse addItem(@PathVariable Long id, @RequestBody Shopping
 }
 
 @PutMapping("/deleteItem/{id}")
-public ShoppingCartResponse deleteItem(@PathVariable Long id, @RequestBody ShoppingCartRequest request) {
-    return shoppingCartService.deleteItem(id, request);
+public ShoppingCartResponse deleteItem(@PathVariable Long id) {
+    return shoppingCartService.deleteItem(id);
     }
-
-
 }

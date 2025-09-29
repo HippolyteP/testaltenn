@@ -15,6 +15,7 @@ import alten.test.decathlon.product.repository.ProductRepository;
 import alten.test.decathlon.shoppingcart.dto.ShoppingCartRequest;
 import alten.test.decathlon.shoppingcart.dto.ShoppingCartResponse;
 import alten.test.decathlon.shoppingcart.entity.ShoppingCart;
+import alten.test.decathlon.shoppingcart.exceptions.ShoppingCartConflictException;
 import alten.test.decathlon.shoppingcart.exceptions.UserNotFoundInShoppingCartException;
 import alten.test.decathlon.shoppingcart.repository.ShoppingCartRepository;
 
@@ -38,6 +39,10 @@ public ShoppingCartResponse addItem( Long id, ShoppingCartRequest shoppingCartre
     ShoppingCart shoppingCart = null;
     User user = securityUtils.getCurrentUser();
     if (id == null) {
+        shoppingCart = shoppingCartRepository.findByUser(user).orElse(null);
+        if (shoppingCart != null) {
+            throw new ShoppingCartConflictException(user.getId());
+        }
         shoppingCart = new ShoppingCart();
         shoppingCart.setProducts(new ArrayList<Product>()); 
         shoppingCart.setUser(user); 
@@ -51,11 +56,13 @@ public ShoppingCartResponse addItem( Long id, ShoppingCartRequest shoppingCartre
 
     shoppingCartRepository.save(shoppingCart);
 
-    return new ShoppingCartResponse(shoppingCart.getId());
+    ShoppingCartResponse shoppingCartResponse = new ShoppingCartResponse(shoppingCart.getId());
+    shoppingCartResponse.setProducts(shoppingCart.getProducts());
+    return shoppingCartResponse;
     
    }
 
-public ShoppingCartResponse deleteItem(Long id, ShoppingCartRequest shoppingCartrequest){
+public ShoppingCartResponse deleteItem(Long id){
     ShoppingCart shoppingCart =  shoppingCartRepository.findByUser(securityUtils.getCurrentUser()).orElseThrow(() -> new RuntimeException());
     Product product = productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
 
@@ -66,7 +73,10 @@ public ShoppingCartResponse deleteItem(Long id, ShoppingCartRequest shoppingCart
     } else {
         shoppingCartRepository.save(shoppingCart);
     }
-    return new ShoppingCartResponse(shoppingCart.getId());
+    ShoppingCartResponse shopppingCartResponse = new ShoppingCartResponse(shoppingCart.getId());
+    shopppingCartResponse.setProducts(shoppingCart.getProducts());
+    return shopppingCartResponse;
+
 }
 
 

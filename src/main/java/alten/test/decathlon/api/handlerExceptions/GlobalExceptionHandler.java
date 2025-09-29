@@ -14,6 +14,7 @@ import alten.test.decathlon.auth.exceptions.UserCreationException;
 import alten.test.decathlon.auth.exceptions.UserNotFoundException;
 import alten.test.decathlon.product.exceptions.ProductConflictException;
 import alten.test.decathlon.product.exceptions.ProductNotFoundException;
+import alten.test.decathlon.shoppingcart.exceptions.ShoppingCartConflictException;
 import alten.test.decathlon.shoppingcart.exceptions.ShoppingCartNotFoundException;
 import alten.test.decathlon.shoppingcart.exceptions.UserNotFoundInShoppingCartException;
 
@@ -49,6 +50,13 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ProductConflictException.class)
     public ResponseEntity<Map<String, String>> handleNotFound(ProductConflictException ex){
+        Map<String, String> error = new HashMap<>();
+        error.put("conflict", ex.getMessage());
+        return new ResponseEntity<>(error, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(ShoppingCartConflictException.class)
+    public ResponseEntity<Map<String, String>> handleNotFound(ShoppingCartConflictException ex){
         Map<String, String> error = new HashMap<>();
         error.put("conflict", ex.getMessage());
         return new ResponseEntity<>(error, HttpStatus.CONFLICT);
